@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de administración — KALISO</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+<!-- ============ PIN DE ACCESO ============ -->
+<div class="pin-gate" id="pinGate">
+  <h2 id="pinGateTitle">Panel de administración</h2>
+  <p id="pinGateDesc">Cargando…</p>
+  <input type="password" id="pinInput" inputmode="numeric" maxlength="8" placeholder="••••">
+  <button type="button" class="btn btn-primary" id="pinSubmit">Entrar</button>
+  <div class="pin-gate-error" id="pinError"></div>
+</div>
+
+<!-- ============ APP DE ADMINISTRACIÓN ============ -->
+<div id="adminApp" style="display:none;">
+
+  <header class="admin-header">
+    <div class="container">
+      <div class="admin-header-brand">
+        <img src="assets/marca/k-mark.png" alt="">
+        <span>KALISO · Panel de administración</span>
+      </div>
+      <div class="admin-header-actions">
+        <a href="index.html" target="_blank" class="btn btn-outline" style="color:var(--color-ivory);border-color:rgba(255,255,255,0.4);">Ver catálogo público</a>
+        <button type="button" class="btn btn-gold" id="downloadBtn">Descargar products.js</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+
+      <div class="admin-notice">
+        <strong>Cómo funciona este panel</strong>
+        Agrega, edita o elimina productos abajo — los cambios se guardan automáticamente en este navegador para que puedas previsualizarlos.
+        Cuando estés conforme, presiona <strong>"Descargar products.js"</strong> arriba y sube ese archivo a tu hosting (reemplazando el actual) para que los cambios se vean en el catálogo público.
+        Si trabajas desde otro computador o celular, los cambios no se comparten automáticamente entre dispositivos: siempre descarga el archivo y compártelo con quien suba los archivos al hosting.
+      </div>
+
+      <div class="admin-grid">
+
+        <!-- ============ FORMULARIO ============ -->
+        <section class="admin-panel" id="adminFormPanel">
+          <h2 id="formTitle">Agregar producto nuevo</h2>
+
+          <form id="productForm">
+            <div class="field-group">
+              <label for="fieldName">Nombre del producto</label>
+              <input type="text" id="fieldName" placeholder="Ej: Falda Denim Boho" required>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label for="fieldCategory">Categoría</label>
+                <select id="fieldCategory" required></select>
+              </div>
+              <div class="field-group">
+                <label for="fieldStock">Unidades disponibles</label>
+                <input type="number" id="fieldStock" min="0" value="10">
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label for="fieldPrice">Precio (COP)</label>
+                <input type="number" id="fieldPrice" min="0" step="1000" placeholder="95000" required>
+              </div>
+              <div class="field-group">
+                <label for="fieldOldPrice">Precio anterior (opcional)</label>
+                <input type="number" id="fieldOldPrice" min="0" step="1000" placeholder="Déjalo vacío si no aplica">
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Fotos del producto (hasta 4)</label>
+              <div class="image-upload-zone" id="imageUploadZone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+                <p>Toca para subir fotos o arrástralas aquí</p>
+                <input type="file" id="imageInput" accept="image/*" multiple>
+              </div>
+              <div class="image-preview-list" id="imagePreviewList"></div>
+            </div>
+
+            <div class="field-group">
+              <label for="fieldDescription">Descripción corta (aparece en la tarjeta)</label>
+              <textarea id="fieldDescription" placeholder="1-2 frases sobre el producto" required></textarea>
+            </div>
+
+            <div class="field-group">
+              <label for="fieldDetails">Características (una por línea, aparecen en el detalle)</label>
+              <textarea id="fieldDetails" placeholder="Tela denim liviana&#10;Botonadura frontal&#10;Hecho en Colombia"></textarea>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label for="fieldSizes">Tallas (separadas por coma)</label>
+                <input type="text" id="fieldSizes" placeholder="S, M, L, XL">
+                <small>Déjalo vacío si no aplica tallas</small>
+              </div>
+              <div class="field-group">
+                <label for="fieldColors">Colores / diseños (separados por coma)</label>
+                <input type="text" id="fieldColors" placeholder="Negro, Azul, Beige">
+                <small>Déjalo vacío si no aplica</small>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label>Etiquetas</label>
+              <div class="tag-checks" id="tagChecks"></div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-outline" id="cancelEditBtn" style="display:none;">Cancelar edición</button>
+              <button type="submit" class="btn btn-primary" id="submitBtn">Guardar producto</button>
+            </div>
+          </form>
+
+          <div style="margin-top:var(--space-lg); padding-top:var(--space-md); border-top:1px solid var(--color-grey-light);">
+            <label style="display:block; font-size:0.76rem; letter-spacing:0.03em; text-transform:uppercase; color:var(--color-charcoal-soft); margin-bottom:0.6rem; font-weight:500;">Categorías del catálogo</label>
+            <div class="admin-categories" id="adminCategories"></div>
+            <div class="admin-add-category">
+              <input type="text" id="newCategoryInput" placeholder="Nueva categoría, ej: Calzado">
+              <button type="button" class="btn btn-outline" id="newCategoryBtn">Agregar</button>
+            </div>
+          </div>
+
+          <div style="margin-top:var(--space-md);">
+            <button type="button" class="btn btn-outline" id="resetBtn" style="width:100%; color:#b34a3c; border-color:#e3b4ac;">Restablecer a los datos originales</button>
+          </div>
+        </section>
+
+        <!-- ============ LISTADO ============ -->
+        <section class="admin-panel">
+          <h2>Productos actuales</h2>
+          <div class="admin-list-header">
+            <div class="admin-search">
+              <input type="text" id="adminProductSearch" placeholder="Buscar producto...">
+            </div>
+          </div>
+          <div class="admin-product-list" id="adminProductList"></div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <div class="status-toast" id="statusToast"></div>
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
