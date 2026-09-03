@@ -24,7 +24,7 @@ El catálogo fue diseñado para funcionar bien en celular y computador. Los clie
 
 - **Lorena:** [+57 317 407 0511](https://wa.me/573174070511)
 - **Karen:** [+57 323 306 7322](https://wa.me/573233067322)
-- **Instagram:** [@kaliso35](https://www.instagram.com/kaliso35)
+- **Instagram:** [@kasoli_35](https://www.instagram.com/kasoli_35)
 
 ## Administración del catálogo
 
