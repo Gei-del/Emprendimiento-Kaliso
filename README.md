@@ -4,7 +4,7 @@
 
 [Ver catálogo público de KASOLI](https://kasoli-catalogo.gpontonca.chatgpt.site)
 
-KASOLI es un emprendimiento colombiano liderado por mujeres empresarias e ingenieras. Unimos creatividad, trabajo artesanal y tecnología para ofrecer productos con identidad, facilitar la atención de nuestros clientes y hacer crecer una marca preparada para el mundo digital.
+KASOLI es un emprendimiento colombiano liderado por mujeres fundadoras y CEO, empresarias e ingenieras. Unimos visión de negocio, creatividad, trabajo artesanal y tecnología para ofrecer productos con identidad, facilitar la atención de nuestros clientes y construir una marca preparada para crecer en el mundo digital.
 
 ## Nuestra propuesta
 
